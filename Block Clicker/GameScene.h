@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "MainMenuScene.h"
+#import "ShopScene.h"
+#import "GameDataHelper.h"
 
 @interface GameScene : SKScene
 

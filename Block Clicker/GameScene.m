@@ -64,13 +64,15 @@
     self.time.fontSize = 40;
     self.time.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 300);
     self.timer = [self createTimer];
+    self.currTimeInSec =[GameDataHelper sharedGameData].time;
     [self.timer fire];
     
     // Money/Score
-    self.currentGold = 0;
+    
+    self.currentGold = [GameDataHelper sharedGameData].gold;
     self.gold = [SKLabelNode labelNodeWithFontNamed:@"Avenir-BlackOblique"];
+    self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
     self.gold.fontColor = color;
-    self.gold.text = @"Gold: 0";
     self.gold.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 275);
     
     // Buttons
@@ -103,8 +105,17 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if ([self.backButton containsPoint:location]) {
+            [GameDataHelper sharedGameData].gold = self.currentGold;
+            [GameDataHelper sharedGameData].time = self.currTimeInSec;
+            [[GameDataHelper sharedGameData]save];
             MainMenuScene *menu = [[MainMenuScene alloc] initWithSize:self.size];
             [self.view presentScene:menu transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:1]];
+        }else if ([self.shopButton containsPoint:location]){
+            [GameDataHelper sharedGameData].gold = self.currentGold;
+            [GameDataHelper sharedGameData].time = self.currTimeInSec;
+            [[GameDataHelper sharedGameData]save];
+            ShopScene *shop = [[ShopScene alloc] initWithSize:self.size];
+            [self.view presentScene:shop transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:1]];
         }
     }
     

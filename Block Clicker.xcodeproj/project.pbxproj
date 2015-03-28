@@ -16,6 +16,8 @@
 		5CF2A7041AC3744200B1EF4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF2A7021AC3744200B1EF4C /* LaunchScreen.xib */; };
 		5CF2A7101AC3744200B1EF4C /* Block_ClickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A70F1AC3744200B1EF4C /* Block_ClickerTests.m */; };
 		5CFCDFE01AC4D36B00E972D5 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFCDFDF1AC4D36B00E972D5 /* MainMenuScene.m */; };
+		A32B62F21AC73D4B00E20F68 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B62F11AC73D4B00E20F68 /* ShopScene.m */; };
+		A32B62F51AC7456000E20F68 /* GameDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B62F41AC7456000E20F68 /* GameDataHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,10 @@
 		5CF2A70F1AC3744200B1EF4C /* Block_ClickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Block_ClickerTests.m; sourceTree = "<group>"; };
 		5CFCDFDE1AC4D36B00E972D5 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		5CFCDFDF1AC4D36B00E972D5 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
+		A32B62F01AC73D4B00E20F68 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
+		A32B62F11AC73D4B00E20F68 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
+		A32B62F31AC7456000E20F68 /* GameDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataHelper.h; sourceTree = "<group>"; };
+		A32B62F41AC7456000E20F68 /* GameDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,10 @@
 			children = (
 				5CF2A6F51AC3744200B1EF4C /* GameScene.h */,
 				5CF2A6F61AC3744200B1EF4C /* GameScene.m */,
+				A32B62F31AC7456000E20F68 /* GameDataHelper.h */,
+				A32B62F41AC7456000E20F68 /* GameDataHelper.m */,
+				A32B62F01AC73D4B00E20F68 /* ShopScene.h */,
+				A32B62F11AC73D4B00E20F68 /* ShopScene.m */,
 				5CFCDFDE1AC4D36B00E972D5 /* MainMenuScene.h */,
 				5CFCDFDF1AC4D36B00E972D5 /* MainMenuScene.m */,
 			);
@@ -245,6 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A32B62F21AC73D4B00E20F68 /* ShopScene.m in Sources */,
+				A32B62F51AC7456000E20F68 /* GameDataHelper.m in Sources */,
 				5CF2A6FC1AC3744200B1EF4C /* GameViewController.m in Sources */,
 				5CFCDFE01AC4D36B00E972D5 /* MainMenuScene.m in Sources */,
 				5CF2A6F41AC3744200B1EF4C /* AppDelegate.m in Sources */,
@@ -372,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Block Clicker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -382,6 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Block Clicker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -400,6 +414,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Block ClickerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Block Clicker.app/Block Clicker";
@@ -415,6 +430,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Block ClickerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Block Clicker.app/Block Clicker";

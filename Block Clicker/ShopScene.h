@@ -1,14 +1,14 @@
 //
-//  GameViewController.h
+//  ShopScene.h
 //  Block Clicker
 //
-
+//  Created by Luke Copeland on 3/28/15.
 //  Copyright (c) 2015 Travis McMahon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import "GameScene.h"
 
-@interface GameViewController : UIViewController
+@interface ShopScene : SKScene
 
 @end
