@@ -115,7 +115,7 @@
             [GameDataHelper sharedGameData].time = self.currTimeInSec;
             [[GameDataHelper sharedGameData]save];
             ShopScene *shop = [[ShopScene alloc] initWithSize:self.size];
-            [self.view presentScene:shop transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:1]];
+            [self.view presentScene:shop transition:[SKTransition pushWithDirection:SKTransitionDirectionLeft duration:1]];
         }
     }
     

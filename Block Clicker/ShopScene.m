@@ -63,7 +63,7 @@
             [GameDataHelper sharedGameData].gold = self.currentGold;
             [[GameDataHelper sharedGameData]save];
             GameScene *game = [[GameScene alloc] initWithSize:self.size];
-            [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:1]];
+            [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionRight duration:1]];
         }
     }
     

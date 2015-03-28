@@ -9,7 +9,6 @@
 #import "MainMenuScene.h"
 
 @interface MainMenuScene()
-@property SKSpriteNode *background;
 @end
 
 @implementation MainMenuScene
@@ -17,9 +16,7 @@
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
     // Background
-    self.background = [SKSpriteNode spriteNodeWithImageNamed:@"colored_grass"];
-    self.background.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
-    self.background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    self.backgroundColor = [UIColor colorWithRed:0.816 green:0.957 blue:0.969 alpha:1.0];
     
     SKLabelNode *play = [SKLabelNode labelNodeWithFontNamed:@"Avenir-BlackOblique"];
     play.text = @"Click To Play!";
@@ -28,7 +25,6 @@
     play.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 50);
     
     // Add everything
-    [self addChild:self.background];
     [self addChild:play];
 }
 
