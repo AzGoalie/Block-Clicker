@@ -30,7 +30,7 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     GameScene *game = [[GameScene alloc] initWithSize:self.size];
-    [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionUp duration:1]];
+    [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionUp duration:2]];
 }
 
 @end

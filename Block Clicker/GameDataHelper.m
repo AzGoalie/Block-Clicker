@@ -14,9 +14,8 @@ static NSString * const timeKey = @"time";
 
 +(instancetype)sharedGameData {
     static id sharedInstance = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ sharedInstance = [self loadInstance];});
+    if (sharedInstance == nil)
+        sharedInstance = [GameDataHelper loadInstance];
     
     return sharedInstance;
 }
@@ -40,26 +39,20 @@ static NSString * const timeKey = @"time";
     return self;
 }
 
-+(NSString*)filePath {
-    static NSString* filePath = nil;
-    if(!filePath) {
-        filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES)firstObject]stringByAppendingPathComponent:@"gamedatahelper"];
-    }
-    return filePath;
-}
-
 +(instancetype)loadInstance{
-    NSData* decodedData = [NSData dataWithContentsOfFile:[GameDataHelper filePath]];
-    if(decodedData) {
-        GameDataHelper* GameDataHelper = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
-        return GameDataHelper;
-    }
-    return [[GameDataHelper alloc]init];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"archive"];
+    GameDataHelper *gameHelper = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
+    if (gameHelper == nil)
+        gameHelper = [[GameDataHelper alloc] init];
+    
+    return gameHelper;
 }
 
 -(void)save {
-    NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [encodedData writeToFile:[GameDataHelper filePath] atomically:YES];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"archive"];
+    [NSKeyedArchiver archiveRootObject:self toFile:archivePath];
 }
 
 @end
