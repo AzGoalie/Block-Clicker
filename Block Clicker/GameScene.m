@@ -122,12 +122,19 @@
     [self touchesMoved:touches withEvent:event];
 }
 
--(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
         if ([self.block containsPoint:location])
             [self spawnCoin];
+    }
+}
+
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
         [self enumerateChildNodesWithName:@"coin" usingBlock:^(SKNode *node, BOOL *stop) {
             if ([node containsPoint:location] && ![self.block containsPoint:location]) {
                 self.currentGold++;
