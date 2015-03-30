@@ -12,6 +12,7 @@
 @interface ShopScene()
 @property SKSpriteNode *background;
 @property SKLabelNode *backButton;
+@property SKSpriteNode *ground;
 
 @property SKLabelNode *gold;
 @property int currentGold;
@@ -40,6 +41,15 @@
     self.gold.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     self.gold.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 255);
     
+    // Ground
+    self.ground = [SKSpriteNode spriteNodeWithImageNamed:@"grass"];
+    self.ground.anchorPoint = CGPointMake(0, 0);
+    self.ground.position = CGPointMake(-10, -10);
+    self.ground.size = CGSizeMake(self.frame.size.width+25, self.ground.size.height);
+    self.ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.ground.size.width*2, self.ground.size.height*2)];
+    self.ground.physicsBody.friction = 1.0;
+    self.ground.physicsBody.dynamic = NO;
+    
     //Back button
     self.backButton = [SKLabelNode labelNodeWithFontNamed:@"Avenir-BlackOblique"];
     self.backButton.text = @"Back";
@@ -49,6 +59,7 @@
     
     // Add everything
     [self addChild:self.background];
+    [self addChild:self.ground];
     [self addChild:self.backButton];
     [self addChild:self.gold];
     [self addChild:play];
