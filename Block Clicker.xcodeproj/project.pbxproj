@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C3896CF1AC8D72300A07F76 /* Shooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3896CE1AC8D72300A07F76 /* Shooter.m */; };
 		5CF2A6F11AC3744200B1EF4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A6F01AC3744200B1EF4C /* main.m */; };
 		5CF2A6F41AC3744200B1EF4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A6F31AC3744200B1EF4C /* AppDelegate.m */; };
 		5CF2A6F71AC3744200B1EF4C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A6F61AC3744200B1EF4C /* GameScene.m */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C3896CD1AC8D72300A07F76 /* Shooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shooter.h; sourceTree = "<group>"; };
+		5C3896CE1AC8D72300A07F76 /* Shooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shooter.m; sourceTree = "<group>"; };
 		5CF2A6EB1AC3744200B1EF4C /* Block Clicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Block Clicker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF2A6EF1AC3744200B1EF4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CF2A6F01AC3744200B1EF4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C3896CC1AC8D6EF00A07F76 /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				5C3896CD1AC8D72300A07F76 /* Shooter.h */,
+				5C3896CE1AC8D72300A07F76 /* Shooter.m */,
+			);
+			name = Actors;
+			sourceTree = "<group>";
+		};
 		5CF2A6E21AC3744200B1EF4C = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 		5CF2A6ED1AC3744200B1EF4C /* Block Clicker */ = {
 			isa = PBXGroup;
 			children = (
+				5C3896CC1AC8D6EF00A07F76 /* Actors */,
 				5CFCDFDD1AC4D34B00E972D5 /* Controllers */,
 				5CFCDFDC1AC4D33C00E972D5 /* Scenes */,
 				5CF2A6F21AC3744200B1EF4C /* AppDelegate.h */,
@@ -255,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C3896CF1AC8D72300A07F76 /* Shooter.m in Sources */,
 				A32B62F21AC73D4B00E20F68 /* ShopScene.m in Sources */,
 				A32B62F51AC7456000E20F68 /* GameDataHelper.m in Sources */,
 				5CF2A6FC1AC3744200B1EF4C /* GameViewController.m in Sources */,

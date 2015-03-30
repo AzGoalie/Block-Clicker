@@ -105,15 +105,11 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if ([self.backButton containsPoint:location]) {
-            [GameDataHelper sharedGameData].gold = self.currentGold;
-            [GameDataHelper sharedGameData].time = self.currTimeInSec;
-            [[GameDataHelper sharedGameData]save];
+            [self pickUpCoins];
             MainMenuScene *menu = [[MainMenuScene alloc] initWithSize:self.size];
             [self.view presentScene:menu transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:1]];
         }else if ([self.shopButton containsPoint:location]){
-            [GameDataHelper sharedGameData].gold = self.currentGold;
-            [GameDataHelper sharedGameData].time = self.currTimeInSec;
-            [[GameDataHelper sharedGameData]save];
+            [self pickUpCoins];
             ShopScene *shop = [[ShopScene alloc] initWithSize:self.size];
             [self.view presentScene:shop transition:[SKTransition pushWithDirection:SKTransitionDirectionLeft duration:1]];
         }
@@ -190,6 +186,22 @@
 
 -(void) updateGold {
     self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
+}
+
+-(void) pickUpCoins {
+    [self enumerateChildNodesWithName:@"coin" usingBlock:^(SKNode *node, BOOL *stop) {
+        self.currentGold++;
+        [self updateGold];
+        [node removeFromParent];
+    }];
+    [self save];
+}
+
+-(void) save {
+    [GameDataHelper sharedGameData].gold = self.currentGold;
+    [GameDataHelper sharedGameData].time = self.currTimeInSec;
+    [[GameDataHelper sharedGameData]save];
+
 }
 
 @end
