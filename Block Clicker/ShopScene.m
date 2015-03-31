@@ -7,7 +7,7 @@
 //
 
 #import "ShopScene.h"
-
+#define FONT @"Avenir-BlackOblique"
 
 @interface ShopScene()
 @property SKSpriteNode *background;
@@ -17,6 +17,13 @@
 @property SKLabelNode *gold;
 @property int currentGold;
 
+@property int numCoins;
+@property int coinWorth;
+@property int multipleCoins;
+
+@property SKLabelNode *numberOfCoinsButton;
+@property SKLabelNode *coinWorthButton;
+@property SKLabelNode *multipleCoinLable;
 @end
 
 @implementation ShopScene
@@ -29,14 +36,14 @@
     self.background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     
     //Simple Labels
-    SKLabelNode *play = [SKLabelNode labelNodeWithFontNamed:@"Avenir-BlackOblique"];
+    SKLabelNode *play = [SKLabelNode labelNodeWithFontNamed:FONT];
     play.text = @"Shop";
     play.fontSize = 50;
     play.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     play.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 290);
     
     self.currentGold = [GameDataHelper sharedGameData].gold;
-    self.gold = [SKLabelNode labelNodeWithFontNamed:@"Avenir-BlackOblique"];
+    self.gold = [SKLabelNode labelNodeWithFontNamed:FONT];
     self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
     self.gold.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     self.gold.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 255);
@@ -50,8 +57,32 @@
     self.ground.physicsBody.friction = 1.0;
     self.ground.physicsBody.dynamic = NO;
     
+    
+    // 'power ups'
+    self.numCoins = [GameDataHelper sharedGameData].numCoinsAllowed;
+    self.coinWorth = [GameDataHelper sharedGameData].coinWorth;
+    self.multipleCoins = [GameDataHelper sharedGameData].multipleCoins;
+    
+    self.numberOfCoinsButton = [SKLabelNode labelNodeWithFontNamed:FONT];
+    self.numberOfCoinsButton.fontSize = 20;
+    self.numberOfCoinsButton.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    self.numberOfCoinsButton.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 140);
+    self.numberOfCoinsButton.text = [NSString stringWithFormat:@"Increase Coins to %d Cost:%d", self.numCoins*2, self.numCoins*4];
+
+    self.coinWorthButton = [SKLabelNode labelNodeWithFontNamed:FONT];
+    self.coinWorthButton.fontSize = 20;
+    self.coinWorthButton.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    self.coinWorthButton.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 100);
+    self.coinWorthButton.text = [NSString stringWithFormat:@"Increase Coins worth to %d Cost:%d", self.coinWorth+1, (self.coinWorth*self.coinWorth*500)];
+    
+    self.multipleCoinLable = [SKLabelNode labelNodeWithFontNamed:FONT];
+    self.multipleCoinLable.fontSize = 20;
+    self.multipleCoinLable.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    self.multipleCoinLable.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 60);
+    self.multipleCoinLable.text = [NSString stringWithFormat:@"Increase Coins Per Click to %d Cost:%d", self.multipleCoins+1, self.multipleCoins*50];
+    
     //Back button
-    self.backButton = [SKLabelNode labelNodeWithFontNamed:@"Avenir-BlackOblique"];
+    self.backButton = [SKLabelNode labelNodeWithFontNamed:FONT];
     self.backButton.text = @"Back";
     self.backButton.fontSize = 40;
     self.backButton.fontColor = [UIColor colorWithWhite:0.4 alpha:1.0];
@@ -62,7 +93,18 @@
     [self addChild:self.ground];
     [self addChild:self.backButton];
     [self addChild:self.gold];
+    [self addChild:self.numberOfCoinsButton];
+    [self addChild:self.coinWorthButton];
+    [self addChild:self.multipleCoinLable];
     [self addChild:play];
+}
+
+-(void) save {
+    [GameDataHelper sharedGameData].gold = self.currentGold;
+    [GameDataHelper sharedGameData].numCoinsAllowed = self.numCoins;
+    [GameDataHelper sharedGameData].coinWorth = self.coinWorth;
+    [GameDataHelper sharedGameData].multipleCoins = self.multipleCoins;
+    [[GameDataHelper sharedGameData]save];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -71,14 +113,50 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if ([self.backButton containsPoint:location]) {
-            [GameDataHelper sharedGameData].gold = self.currentGold;
-            [[GameDataHelper sharedGameData]save];
+            [self save];
             GameScene *game = [[GameScene alloc] initWithSize:self.size];
             [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionRight duration:1]];
         }
     }
     
     [self touchesMoved:touches withEvent:event];
+}
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        if ([self.coinWorthButton containsPoint:location]) {
+            //self.coinWorth+1, self.coinWorth*500
+            if (self.currentGold >= self.coinWorth*500) {
+                self.currentGold -= self.coinWorth*500;
+                self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
+                self.coinWorth++;
+                self.coinWorthButton.text = [NSString stringWithFormat:@"Increase Coins worth to %d Cost:%d", self.coinWorth+1, self.coinWorth*self.coinWorth*500];
+                [self save];
+            }
+        }
+        
+        if ([self.numberOfCoinsButton containsPoint:location]) {
+            if (self.currentGold >= self.numCoins*4) {
+                self.currentGold -= self.numCoins * 4;
+                self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
+                self.numCoins *= 2;
+                self.numberOfCoinsButton.text = [NSString stringWithFormat:@"Increase Coins to %d Cost:%d", self.numCoins*2, self.numCoins*4];
+                [self save];
+            }
+        }
+        
+        if ([self.multipleCoinLable containsPoint:location]) {
+            if (self.currentGold >= self.multipleCoins*50) {
+                self.currentGold -= self.multipleCoins*50;
+                self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
+                self.multipleCoins++;
+                self.multipleCoinLable.text = [NSString stringWithFormat:@"Increase Coins Per Click to %d Cost:%d", self.multipleCoins+1, self.multipleCoins*50];
+                [self save];
+
+            }
+        }
+    }
 }
 
 @end

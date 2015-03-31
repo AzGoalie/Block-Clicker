@@ -11,6 +11,10 @@
 @implementation GameDataHelper
 static NSString * const goldKey = @"gold";
 static NSString * const timeKey = @"time";
+static NSString * const numCoinKey = @"nCoins";
+static NSString * const coinWothKey = @"coinWorth";
+static NSString * const multipleCoinsKey = @"multipleCoins";
+
 
 +(instancetype)sharedGameData {
     static id sharedInstance = nil;
@@ -23,11 +27,17 @@ static NSString * const timeKey = @"time";
 -(void)reset{
     self.gold = 0; //Set Gold and time back to zero, new game
     self.time = 0;
+    self.numCoinsAllowed = 25;
+    self.coinWorth = 1;
+    self.multipleCoins = 1;
 }
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeDouble:self.gold forKey:goldKey];
     [encoder encodeDouble:self.time forKey:timeKey];
+    [encoder encodeInt:self.numCoinsAllowed forKey:numCoinKey];
+    [encoder encodeInt:self.coinWorth forKey:coinWothKey];
+    [encoder encodeInt:self.multipleCoins forKey:multipleCoinsKey];
     
 }
 -(instancetype)initWithCoder:(NSCoder *)decoder {
@@ -35,6 +45,9 @@ static NSString * const timeKey = @"time";
     if(self){
         _gold = [decoder decodeDoubleForKey:goldKey];
         _time = [decoder decodeDoubleForKey:timeKey];
+        _numCoinsAllowed = [decoder decodeIntForKey:numCoinKey];
+        _coinWorth = [decoder decodeIntForKey:coinWothKey];
+        _multipleCoins = [decoder decodeIntForKey:multipleCoinsKey];
     }
     return self;
 }

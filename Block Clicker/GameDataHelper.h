@@ -11,7 +11,9 @@
 @interface GameDataHelper : NSObject <NSCoding>
 @property (assign, nonatomic) int gold;
 @property (assign, nonatomic) int time;
-@property (assign, nonatomic) NSArray *children;
+@property (assign, nonatomic) int numCoinsAllowed;
+@property (assign, nonatomic) int coinWorth;
+@property (assign, nonatomic) int multipleCoins;
 
 +(instancetype)sharedGameData;
 -(void)reset;

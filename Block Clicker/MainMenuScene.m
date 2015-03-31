@@ -24,7 +24,14 @@
     play.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     play.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 50);
     
+    SKLabelNode *title = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
+    title.fontSize = 50;
+    title.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    title.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 150);
+    title.text = @"BLOCK CLICKER";
+    
     // Add everything
+    [self addChild:title];
     [self addChild:play];
 }
 
