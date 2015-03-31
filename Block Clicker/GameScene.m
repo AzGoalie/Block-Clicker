@@ -133,11 +133,13 @@
         if ([self.backButton containsPoint:location]) {
             [self pickUpCoins];
             MainMenuScene *menu = [[MainMenuScene alloc] initWithSize:self.size];
-            [self.view presentScene:menu transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:1]];
+            [self.view presentScene:menu transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:.5]];
         }else if ([self.shopButton containsPoint:location]){
             [self pickUpCoins];
-            ShopScene *shop = [[ShopScene alloc] initWithSize:self.size];
-            [self.view presentScene:shop transition:[SKTransition pushWithDirection:SKTransitionDirectionLeft duration:1]];
+            [self save];
+            DoorTransition *door = [[DoorTransition alloc] initWithSize:self.size];
+            [self.view presentScene:door transition:[SKTransition doorsCloseHorizontalWithDuration:1]];
+
         }
     }
     
@@ -237,6 +239,8 @@
     [GameDataHelper sharedGameData].coinWorth = self.coinWorth;
     [GameDataHelper sharedGameData].numCoinsAllowed = self.numCoins;
     [GameDataHelper sharedGameData].multipleCoins = self.multipleCoins;
+    [GameDataHelper sharedGameData].doorTransition = 0;
+
     [[GameDataHelper sharedGameData]save];
 
 }

@@ -14,6 +14,8 @@ static NSString * const timeKey = @"time";
 static NSString * const numCoinKey = @"nCoins";
 static NSString * const coinWothKey = @"coinWorth";
 static NSString * const multipleCoinsKey = @"multipleCoins";
+static NSString * const doorTransition = @"doorTransition";
+
 
 
 +(instancetype)sharedGameData {
@@ -30,6 +32,7 @@ static NSString * const multipleCoinsKey = @"multipleCoins";
     self.numCoinsAllowed = 25;
     self.coinWorth = 1;
     self.multipleCoins = 1;
+    self.doorTransition = 0;
 }
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
@@ -38,6 +41,8 @@ static NSString * const multipleCoinsKey = @"multipleCoins";
     [encoder encodeInt:self.numCoinsAllowed forKey:numCoinKey];
     [encoder encodeInt:self.coinWorth forKey:coinWothKey];
     [encoder encodeInt:self.multipleCoins forKey:multipleCoinsKey];
+    [encoder encodeInt:self.doorTransition forKey:doorTransition];
+
     
 }
 -(instancetype)initWithCoder:(NSCoder *)decoder {
@@ -48,6 +53,7 @@ static NSString * const multipleCoinsKey = @"multipleCoins";
         _numCoinsAllowed = [decoder decodeIntForKey:numCoinKey];
         _coinWorth = [decoder decodeIntForKey:coinWothKey];
         _multipleCoins = [decoder decodeIntForKey:multipleCoinsKey];
+        _doorTransition = [decoder decodeIntForKey:doorTransition];
     }
     return self;
 }

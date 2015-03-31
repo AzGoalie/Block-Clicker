@@ -14,6 +14,8 @@
 @property (assign, nonatomic) int numCoinsAllowed;
 @property (assign, nonatomic) int coinWorth;
 @property (assign, nonatomic) int multipleCoins;
+@property (assign, nonatomic) int doorTransition;
+
 
 +(instancetype)sharedGameData;
 -(void)reset;

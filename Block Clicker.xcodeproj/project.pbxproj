@@ -18,6 +18,7 @@
 		5CFCDFE01AC4D36B00E972D5 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFCDFDF1AC4D36B00E972D5 /* MainMenuScene.m */; };
 		A32B62F21AC73D4B00E20F68 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B62F11AC73D4B00E20F68 /* ShopScene.m */; };
 		A32B62F51AC7456000E20F68 /* GameDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B62F41AC7456000E20F68 /* GameDataHelper.m */; };
+		A34765C11ACA6BEB00EB5F88 /* DoorTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A34765C01ACA6BEB00EB5F88 /* DoorTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		A32B62F11AC73D4B00E20F68 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		A32B62F31AC7456000E20F68 /* GameDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataHelper.h; sourceTree = "<group>"; };
 		A32B62F41AC7456000E20F68 /* GameDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataHelper.m; sourceTree = "<group>"; };
+		A34765BF1ACA6BEB00EB5F88 /* DoorTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoorTransition.h; sourceTree = "<group>"; };
+		A34765C01ACA6BEB00EB5F88 /* DoorTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoorTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 				A32B62F41AC7456000E20F68 /* GameDataHelper.m */,
 				A32B62F01AC73D4B00E20F68 /* ShopScene.h */,
 				A32B62F11AC73D4B00E20F68 /* ShopScene.m */,
+				A34765BF1ACA6BEB00EB5F88 /* DoorTransition.h */,
+				A34765C01ACA6BEB00EB5F88 /* DoorTransition.m */,
 				5CFCDFDE1AC4D36B00E972D5 /* MainMenuScene.h */,
 				5CFCDFDF1AC4D36B00E972D5 /* MainMenuScene.m */,
 			);
@@ -257,6 +262,7 @@
 			files = (
 				A32B62F21AC73D4B00E20F68 /* ShopScene.m in Sources */,
 				A32B62F51AC7456000E20F68 /* GameDataHelper.m in Sources */,
+				A34765C11ACA6BEB00EB5F88 /* DoorTransition.m in Sources */,
 				5CF2A6FC1AC3744200B1EF4C /* GameViewController.m in Sources */,
 				5CFCDFE01AC4D36B00E972D5 /* MainMenuScene.m in Sources */,
 				5CF2A6F41AC3744200B1EF4C /* AppDelegate.m in Sources */,

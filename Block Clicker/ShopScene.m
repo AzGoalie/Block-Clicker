@@ -104,6 +104,7 @@
     [GameDataHelper sharedGameData].numCoinsAllowed = self.numCoins;
     [GameDataHelper sharedGameData].coinWorth = self.coinWorth;
     [GameDataHelper sharedGameData].multipleCoins = self.multipleCoins;
+    [GameDataHelper sharedGameData].doorTransition = 1;
     [[GameDataHelper sharedGameData]save];
 }
 
@@ -114,8 +115,8 @@
         CGPoint location = [touch locationInNode:self];
         if ([self.backButton containsPoint:location]) {
             [self save];
-            GameScene *game = [[GameScene alloc] initWithSize:self.size];
-            [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionRight duration:1]];
+            DoorTransition *door = [[DoorTransition alloc] initWithSize:self.size];
+            [self.view presentScene:door transition:[SKTransition doorsCloseHorizontalWithDuration:1]];
         }
     }
     
