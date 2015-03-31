@@ -128,8 +128,8 @@
         CGPoint location = [touch locationInNode:self];
         if ([self.coinWorthButton containsPoint:location]) {
             //self.coinWorth+1, self.coinWorth*500
-            if (self.currentGold >= self.coinWorth*500) {
-                self.currentGold -= self.coinWorth*500;
+            if (self.currentGold >= self.coinWorth*self.coinWorth*500) {
+                self.currentGold -= self.coinWorth*self.coinWorth*500;
                 self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
                 self.coinWorth++;
                 self.coinWorthButton.text = [NSString stringWithFormat:@"Increase Coins worth to %d Cost:%d", self.coinWorth+1, self.coinWorth*self.coinWorth*500];
