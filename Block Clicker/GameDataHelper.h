@@ -16,6 +16,8 @@
 @property (assign, nonatomic) int multipleCoins;
 @property (assign, nonatomic) int doorTransition;
 
+@property (assign, nonatomic) int blockHp;
+
 
 +(instancetype)sharedGameData;
 -(void)reset;

@@ -10,5 +10,7 @@
 #import "GameScene.h"
 
 @interface MainMenuScene : SKScene
-
+@property SKLabelNode *play;
+@property SKLabelNode *leaderboards;
+@property SKLabelNode *reset;
 @end

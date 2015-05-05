@@ -23,10 +23,13 @@
     
     //Set doorBool, Lets DoorTranstionScence know which scene to transition to
     self.doorBool = [GameDataHelper sharedGameData].doorTransition;
+    SKSpriteNode *door = [SKSpriteNode spriteNodeWithImageNamed:@"door"];
+    door.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
+    door.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    [self addChild:door];
     
     //Create timer to transition to shop
     self.timer = [self createTimer];
-    
 }
 
 - (NSTimer*) createTimer {

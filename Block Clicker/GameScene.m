@@ -34,6 +34,9 @@
 @property int coinsOut;
 @property int coinWorth;
 @property int multipleCoins;
+
+@property int hp;
+@property SKLabelNode *hpLabel;
 @end
 
 @implementation GameScene
@@ -81,6 +84,13 @@
     self.gold.fontColor = color;
     self.gold.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 275);
     
+    // HP
+    self.hp = [GameDataHelper sharedGameData].blockHp;
+    self.hpLabel = [SKLabelNode labelNodeWithFontNamed:FONT];
+    self.hpLabel.text = [NSString stringWithFormat:@"Block HP: %d", self.hp];
+    self.hpLabel.fontColor = color;
+    self.hpLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 225);
+    
     self.coinsOut = 0;
     self.coinTotal = [SKLabelNode labelNodeWithFontNamed:FONT];
     self.coinTotal.fontColor = color;
@@ -123,6 +133,7 @@
     [self addChild:self.backButton];
     [self addChild:self.shopButton];
     [self addChild:self.coinTotal];
+    [self addChild:self.hpLabel];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -215,8 +226,15 @@
     self.coinsOut++;
     self.coinTotal.text = [NSString stringWithFormat:@"Coins: %d/%d", self.coinsOut, self.numCoins];
     
+    self.hp -= self.coinWorth;
+    self.hpLabel.text = [NSString stringWithFormat:@"Block HP: %d", self.hp];
+    
+    // GAME OVER
+    if (self.hp <= 0) {
+        
+    }
+    
     [self addChild:coin];
-
 }
 
 -(void) updateGold {
