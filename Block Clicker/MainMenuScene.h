@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "GameScene.h"
+#import "LeaderboardScene.h"
+#import "GameOverScene.h"
 
 @interface MainMenuScene : SKScene
 @property SKLabelNode *play;

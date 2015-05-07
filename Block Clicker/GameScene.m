@@ -37,6 +37,9 @@
 
 @property int hp;
 @property SKLabelNode *hpLabel;
+
+@property SKSpriteNode *pickup;
+@property SKSpriteNode *shooter;
 @end
 
 @implementation GameScene
@@ -99,14 +102,6 @@
     
     self.multipleCoins = [GameDataHelper sharedGameData].multipleCoins;
     
-    // Defaults
-    if (self.numCoins == 0)
-        self.numCoins = 25;
-    if (self.coinWorth == 0)
-        self.coinWorth = 1;
-    if (self.multipleCoins == 0)
-        self.multipleCoins = 1;
-    
     self.coinTotal.text = [NSString stringWithFormat:@"Coins: %d/%d", self.coinsOut, self.numCoins];
     self.coinTotal.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 250);
     
@@ -134,6 +129,36 @@
     [self addChild:self.shopButton];
     [self addChild:self.coinTotal];
     [self addChild:self.hpLabel];
+    
+    if ([GameDataHelper sharedGameData].shooter) {
+        self.shooter = [SKSpriteNode spriteNodeWithImageNamed:@"shooter"];
+        self.shooter.anchorPoint = CGPointMake(0, 0);
+        self.shooter.position = CGPointMake(0, self.ground.size.height-10);
+        self.shooter.size = CGSizeMake(self.pickup.size.width/2, self.pickup.size.height/2);
+
+        
+        [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                         target:self selector:@selector(spawnCoin2:) userInfo:nil repeats:YES];
+        
+        [self addChild:self.shooter];
+    }
+    
+    if ([GameDataHelper sharedGameData].pickup) {
+        self.pickup = [SKSpriteNode spriteNodeWithImageNamed:@"pickup"];
+        self.pickup.anchorPoint = CGPointMake(0, 0);
+        self.pickup.position = CGPointMake(0, self.ground.size.height-10);
+        self.pickup.size = CGSizeMake(self.pickup.size.width/2, self.pickup.size.height/2);
+        
+        SKAction *a = [SKAction sequence:@[
+                                          [SKAction moveTo:CGPointMake(self.size.width, self.pickup.position.y) duration:1],
+                                          [SKAction scaleXTo:-1 duration:0.5],
+                                          [SKAction moveTo:CGPointMake(0, self.pickup.position.y) duration:1],
+                                          [SKAction scaleXTo:1 duration:0.5]
+                                          ]];
+        [self.pickup runAction:[SKAction repeatActionForever:a]];
+        
+        [self addChild:self.pickup];
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -185,7 +210,18 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+    // Pickuper
+    [self enumerateChildNodesWithName:@"coin" usingBlock:^(SKNode *node, BOOL *stop) {
+        if ([node containsPoint:self.pickup.position]) {
+            self.currentGold += self.coinWorth;
+            self.coinsOut--;
+            self.coinTotal.text = [NSString stringWithFormat:@"Coins: %d/%d", self.coinsOut, self.numCoins];
+            [self updateGold];
+            [node removeFromParent];
+        }
+    }];
+
+    // Shooter
 }
 
 - (NSTimer*) createTimer {
@@ -231,10 +267,17 @@
     
     // GAME OVER
     if (self.hp <= 0) {
-        
+        [self pickUpCoins];
+        [self save];
+        GameOverScene *go = [[GameOverScene alloc] initWithSize:self.size];
+        [self.view presentScene:go transition:[SKTransition pushWithDirection:SKTransitionDirectionDown duration:2]];
     }
     
     [self addChild:coin];
+}
+
+- (void) spawnCoin2:(NSTimer *)timer {
+    [self spawnCoin];
 }
 
 -(void) updateGold {
@@ -258,6 +301,7 @@
     [GameDataHelper sharedGameData].numCoinsAllowed = self.numCoins;
     [GameDataHelper sharedGameData].multipleCoins = self.multipleCoins;
     [GameDataHelper sharedGameData].doorTransition = 0;
+    [GameDataHelper sharedGameData].blockHp = self.hp;
 
     [[GameDataHelper sharedGameData]save];
 

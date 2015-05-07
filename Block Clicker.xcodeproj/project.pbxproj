@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C50993C1AFB085100C7FF2A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C50993B1AFB085100C7FF2A /* GameOverScene.m */; };
+		5C50993F1AFB088800C7FF2A /* LeaderboardScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C50993E1AFB088800C7FF2A /* LeaderboardScene.m */; };
 		5CF2A6F11AC3744200B1EF4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A6F01AC3744200B1EF4C /* main.m */; };
 		5CF2A6F41AC3744200B1EF4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A6F31AC3744200B1EF4C /* AppDelegate.m */; };
 		5CF2A6F71AC3744200B1EF4C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2A6F61AC3744200B1EF4C /* GameScene.m */; };
@@ -32,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C50993A1AFB085100C7FF2A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		5C50993B1AFB085100C7FF2A /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		5C50993D1AFB088800C7FF2A /* LeaderboardScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardScene.h; sourceTree = "<group>"; };
+		5C50993E1AFB088800C7FF2A /* LeaderboardScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardScene.m; sourceTree = "<group>"; };
 		5CF2A6EB1AC3744200B1EF4C /* Block Clicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Block Clicker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF2A6EF1AC3744200B1EF4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CF2A6F01AC3744200B1EF4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,6 +153,10 @@
 				A34765C01ACA6BEB00EB5F88 /* DoorTransition.m */,
 				5CFCDFDE1AC4D36B00E972D5 /* MainMenuScene.h */,
 				5CFCDFDF1AC4D36B00E972D5 /* MainMenuScene.m */,
+				5C50993A1AFB085100C7FF2A /* GameOverScene.h */,
+				5C50993B1AFB085100C7FF2A /* GameOverScene.m */,
+				5C50993D1AFB088800C7FF2A /* LeaderboardScene.h */,
+				5C50993E1AFB088800C7FF2A /* LeaderboardScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -261,8 +271,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A32B62F21AC73D4B00E20F68 /* ShopScene.m in Sources */,
+				5C50993C1AFB085100C7FF2A /* GameOverScene.m in Sources */,
 				A32B62F51AC7456000E20F68 /* GameDataHelper.m in Sources */,
 				A34765C11ACA6BEB00EB5F88 /* DoorTransition.m in Sources */,
+				5C50993F1AFB088800C7FF2A /* LeaderboardScene.m in Sources */,
 				5CF2A6FC1AC3744200B1EF4C /* GameViewController.m in Sources */,
 				5CFCDFE01AC4D36B00E972D5 /* MainMenuScene.m in Sources */,
 				5CF2A6F41AC3744200B1EF4C /* AppDelegate.m in Sources */,

@@ -1,16 +1,15 @@
 //
-//  GameScene.h
+//  LeaderboardScene.h
 //  Block Clicker
 //
-
+//  Created by Travis McMahon on 5/6/15.
 //  Copyright (c) 2015 Travis McMahon. All rights reserved.
 //
 
 #import <SpriteKit/SpriteKit.h>
 #import "MainMenuScene.h"
-#import "ShopScene.h"
-#import "DoorTransition.h"
 #import "GameDataHelper.h"
 
-@interface GameScene : SKScene
+@interface LeaderboardScene : SKScene
+@property SKLabelNode *back;
 @end

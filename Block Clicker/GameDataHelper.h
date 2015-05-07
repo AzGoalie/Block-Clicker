@@ -17,7 +17,10 @@
 @property (assign, nonatomic) int doorTransition;
 
 @property (assign, nonatomic) int blockHp;
+@property (strong, nonatomic) NSMutableArray *leaderboard;
 
+@property (assign, nonatomic) bool pickup;
+@property (assign, nonatomic) bool shooter;
 
 +(instancetype)sharedGameData;
 -(void)reset;

@@ -59,7 +59,8 @@
             GameScene *game = [[GameScene alloc] initWithSize:self.size];
             [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionUp duration:2]];
         }else if ([self.leaderboards containsPoint:location]) {
-            
+            LeaderboardScene *game = [[LeaderboardScene alloc] initWithSize:self.size];
+            [self.view presentScene:game transition:[SKTransition pushWithDirection:SKTransitionDirectionRight duration:2]];
         } else if ([self.reset containsPoint:location]) {
             [[GameDataHelper sharedGameData] reset];
             GameScene *game = [[GameScene alloc] initWithSize:self.size];

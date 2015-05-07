@@ -16,7 +16,10 @@ static NSString * const coinWothKey = @"coinWorth";
 static NSString * const multipleCoinsKey = @"multipleCoins";
 static NSString * const doorTransition = @"doorTransition";
 
+static NSString * const lbKey = @"leaderboard";
 static NSString * const blockHpKey = @"blockHp";
+static NSString * const pickupKey = @"pickup";
+static NSString * const shooterKey = @"shooter";
 
 +(instancetype)sharedGameData {
     static id sharedInstance = nil;
@@ -33,7 +36,10 @@ static NSString * const blockHpKey = @"blockHp";
     self.coinWorth = 1;
     self.multipleCoins = 1;
     self.doorTransition = 0;
-    self.blockHp = 1000000;
+    self.blockHp = 1000;
+    self.leaderboard = [[NSMutableArray alloc] init];
+    self.pickup = false;
+    self.shooter = false;
 }
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
@@ -44,8 +50,8 @@ static NSString * const blockHpKey = @"blockHp";
     [encoder encodeInt:self.multipleCoins forKey:multipleCoinsKey];
     [encoder encodeInt:self.doorTransition forKey:doorTransition];
     [encoder encodeInt:self.blockHp forKey:blockHpKey];
-
-    
+    [encoder encodeBool:self.pickup forKey:pickupKey];
+    [encoder encodeBool:self.shooter forKey:shooterKey];
 }
 -(instancetype)initWithCoder:(NSCoder *)decoder {
     self = [self init];
@@ -57,6 +63,9 @@ static NSString * const blockHpKey = @"blockHp";
         _multipleCoins = [decoder decodeIntForKey:multipleCoinsKey];
         _doorTransition = [decoder decodeIntForKey:doorTransition];
         _blockHp = [decoder decodeIntForKey:blockHpKey];
+        _leaderboard = [decoder decodeObjectForKey:lbKey];
+        _pickup = [decoder decodeBoolForKey:pickupKey];
+        _shooter = [decoder decodeBoolForKey:shooterKey];
     }
     return self;
 }
@@ -65,8 +74,10 @@ static NSString * const blockHpKey = @"blockHp";
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"archive"];
     GameDataHelper *gameHelper = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
-    if (gameHelper == nil)
+    if (gameHelper == nil) {
         gameHelper = [[GameDataHelper alloc] init];
+        [gameHelper reset];
+    }
     
     return gameHelper;
 }

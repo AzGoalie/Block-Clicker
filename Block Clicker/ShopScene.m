@@ -24,6 +24,9 @@
 @property SKLabelNode *numberOfCoinsButton;
 @property SKLabelNode *coinWorthButton;
 @property SKLabelNode *multipleCoinLable;
+
+@property SKLabelNode *pickup;
+@property SKLabelNode *shooter;
 @end
 
 @implementation ShopScene
@@ -97,6 +100,24 @@
     [self addChild:self.coinWorthButton];
     [self addChild:self.multipleCoinLable];
     [self addChild:play];
+    
+    if (![GameDataHelper sharedGameData].pickup) {
+        self.pickup = [SKLabelNode labelNodeWithFontNamed:FONT];
+        self.pickup.fontSize = 20;
+        self.pickup.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        self.pickup.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 20);
+        self.pickup.text = [NSString stringWithFormat:@"Buy a coin collector Cost:%d", 1];
+        [self addChild:self.pickup];
+    }
+    
+    if (![GameDataHelper sharedGameData].shooter) {
+        self.shooter = [SKLabelNode labelNodeWithFontNamed:FONT];
+        self.shooter.fontSize = 20;
+        self.shooter.fontColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        self.shooter.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 20);
+        self.shooter.text = [NSString stringWithFormat:@"Buy a coin shooter Cost:%d", 1];
+        [self addChild:self.shooter];
+    }
 }
 
 -(void) save {
@@ -155,6 +176,27 @@
                 self.multipleCoinLable.text = [NSString stringWithFormat:@"Increase Coins Per Click to %d Cost:%d", self.multipleCoins+1, self.multipleCoins*50];
                 [self save];
 
+            }
+        }
+        
+        if ([self.pickup containsPoint:location]) {
+            if (self.currentGold >= 1) {
+                self.currentGold -= 1;
+                self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
+                [GameDataHelper sharedGameData].pickup = true;
+                [self.pickup removeFromParent];
+                [self save];
+                
+            }
+        }
+        
+        if ([self.shooter containsPoint:location]) {
+            if (self.currentGold >= 1) {
+                self.currentGold -= 1;
+                self.gold.text = [NSString stringWithFormat:@"Gold %d", self.currentGold];
+                [GameDataHelper sharedGameData].shooter = true;
+                [self.shooter removeFromParent];
+                [self save];
             }
         }
     }
